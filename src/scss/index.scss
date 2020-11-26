@@ -1,0 +1,511 @@
+@font-face {
+    font-family: 'Roboto-figma';
+    src: url('../fonts/roboto.ttf');
+}   
+
+$white-color: #ffffff;
+$purple-color: #7A91E0;
+$green-color: #335A63;
+$green-light-color: #5798A6;
+
+%roboto-font {
+    font-family: 'Roboto-figma';
+    font-weight: 900;
+    font-style: normal;
+}
+
+%circle-button {
+    width: 35px;
+    height: 35px;
+    @extend %roboto-font;
+    font-size: 16px;
+    border-radius: 50%;
+    color: $white-color;
+    border: none;
+    background-color: $green-light-color;
+    outline: none;
+
+    &:hover {
+        cursor: pointer;
+        opacity: 0.7;
+    }
+}
+
+%simple-button {
+    padding: 5px 0px;
+    width: 100%;
+    height: auto;
+    @extend %roboto-font;
+    font-size: 13px;
+    color: $white-color;
+    border: none;
+    text-align: center;
+    overflow: hidden;
+    outline: none;
+
+    &:hover {
+        cursor: pointer;
+        opacity: 0.7;
+    }
+}
+
+body, html {
+    margin: 0px;
+    padding: 0px;;
+    width: 100%;
+    height: 100%;
+    background-color: $purple-color;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blockout {
+    display: none;
+    height: 100%;
+    width: 100%;
+    background: rgba(41, 41, 41, 0.6);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.main {
+    width: 225px;
+    background-color: $green-color;
+    overflow: hidden;
+
+    &__content {
+        margin: 40px 38px 60px 38px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        overflow: hidden;
+    }
+
+    &__title {
+        margin: 0px;
+        @extend %roboto-font;
+        font-size: 13px;
+        color: $white-color;
+        text-align: right;
+    }
+
+    &__slider {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    &__slider-left {
+        @extend %circle-button;
+    }
+
+    &__slider-current {
+        @extend %circle-button;
+
+        &:hover {
+            opacity: 1;
+            cursor: auto;
+        }
+    }
+
+    &__slider-right {
+        @extend %circle-button;
+    }
+
+    &__play-btn {
+        @extend %simple-button;
+        background-color: #7AE07E;
+    }
+
+    &__scoreboard-btn {
+        @extend %simple-button;
+        background-color: $purple-color;
+    }
+
+    &__guide-btn {
+        @extend %simple-button;
+        background-color: $purple-color;
+    }
+
+}
+
+.game {
+    margin: auto;
+    width: 225px;
+    overflow: hidden;
+
+    &__content {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        overflow: hidden;
+    }
+
+    &__info {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__moves, &__time {
+        display: flex;
+        flex-direction: row;
+        column-gap: 5px;
+    }
+
+    &__moves-title, &__moves-value, &__time-title, &__time-value {
+        margin: 0px;
+        @extend %roboto-font;
+        font-size: 13px;
+        color: $white-color;
+    }
+
+    &__burger {
+        width: 35px;
+        height: 35px;
+        border: none;
+        background:url('../images/menu.png') center no-repeat; 
+        background-size: 20px 20px;
+        background-color: $green-color;
+        outline: none;
+
+        &:hover {
+            cursor: pointer;
+            opacity: 0.7;
+        }
+    }
+
+    &__board {
+        margin: 0px !important;
+        height: 221px;
+        width: 221px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid $green-color;
+        background-color: $green-light-color;
+        overflow: hidden;
+    }
+
+    &__board-content {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    &__board-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        background-color: $white-color;
+        outline: 2px solid $green-color;
+        outline-offset: -1px;
+        transition: all 200ms linear; 
+    }
+
+    &__board-item-index {
+        margin: 0px;
+        @extend %roboto-font;
+        font-size: 1em;
+        color: $green-color;
+    }
+}
+
+.menu {
+    width: 100%;
+    height: 300px;
+    bottom: -100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background-color: $green-color;
+    transition: all 500ms ease; 
+    z-index: 2;
+
+    &__content {
+        width: 225px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+    &__title {
+        margin: 0px;
+        @extend %roboto-font;
+        font-size: 13px;
+        color: $white-color;
+        text-align: right;
+    }
+
+    &__resume-btn {
+        @extend %simple-button;
+        background-color: #7AE07E;
+    }
+
+    &__restart-btn {
+        @extend %simple-button;
+        background-color: $purple-color;
+    }
+
+    &__sound-btn {
+        @extend %simple-button;
+        background-color: $purple-color;
+    }
+
+    &__save-btn {
+        @extend %simple-button;
+        background-color: $purple-color;
+    }
+
+    &__exit-btn {
+        @extend %simple-button;
+        background-color: #E07A7A;
+    }
+}
+
+.gameover {
+    width: 100%;
+    height: 300px;
+    bottom: -100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    background-color: $green-color;
+    transition: all 500ms ease; 
+    z-index: 2;
+
+    &__content {
+        width: 225px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+    &__message {
+        margin: 0px;
+        @extend %roboto-font;
+        font-size: 13px;
+        color: $white-color;
+        text-align: center;
+    }
+
+    &__restart-btn {
+        @extend %simple-button;
+        background-color: $purple-color;
+    }
+
+    &__exit-btn {
+        @extend %simple-button;
+        background-color: #E07A7A;
+    }
+}
+
+@media (min-width: 767px) {
+    .main {
+        width: 225px * 2;
+
+        &__content {
+            margin: 40px * 2 38px * 2 60px * 2 38px * 2;
+            row-gap: 15px;
+        }
+
+        &__title {
+            font-size: 18px;
+        }
+
+        &__slider-left, &__slider-current, &__slider-right {
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+        }
+    
+        &__play-btn, &__scoreboard-btn, &__guide-btn {
+            padding: 10px 0px !important;
+            font-size: 18px;
+        }
+    }
+
+    .game {
+        width: 225px * 2;
+
+        &__moves-title, &__moves-value, &__time-title, &__time-value {
+            font-size: 20px;
+        }
+    
+        &__burger {
+            width: 50px;
+            height: 50px;
+            background-size: 35px 35px;
+        }
+
+        &__board {
+            height: 221px * 2;
+            width: 221px * 2;
+        }
+        
+        &__board-content {
+            height: 200px * 2;
+            width: 200px * 2;
+        }
+
+        &__board-item-index {
+            font-size: 2em;
+        }
+    }
+
+    .menu {
+        height: 400px;
+
+        &__content {
+            width: 225px * 2;
+            row-gap: 15px;
+        }
+
+        &__title {
+            font-size: 18px;
+        }
+
+        &__resume-btn, &__restart-btn, &__sound-btn, &__save-btn, &__exit-btn {
+            padding: 10px 0px !important;
+            font-size: 18px;
+        }
+    }
+
+    .gameover {
+        height: 400px;
+
+        &__content {
+            width: 225px * 2;
+            row-gap: 15px;
+        }
+
+        &__message {
+            font-size: 18px;
+        }
+
+        &__restart-btn, &__exit-btn {
+            padding: 10px 0px !important;
+            font-size: 18px;
+        }
+    }
+    
+}
+
+@media (min-width: 1280px) {
+    .main {
+        width: 225px * 3;
+
+        &__content {
+            margin: 40px * 3 38px * 3 60px * 3 38px * 3;
+            row-gap: 20px;
+        }
+
+        &__title {
+            font-size: 23px;
+        }
+
+        &__slider-left, &__slider-current, &__slider-right {
+            width: 70px;
+            height: 70px;
+            font-size: 24px;
+        }
+    
+        &__play-btn, &__scoreboard-btn, &__guide-btn {
+            padding: 15px 0px !important;
+            font-size: 23px;
+        }
+    }
+
+    .game {
+        width: 225px * 3;
+
+        &__moves-title, &__moves-value, &__time-title, &__time-value {
+            font-size: 25px;
+        }
+    
+        &__burger {
+            width: 70px;
+            height: 70px;
+            background-size: 55px 55px;
+        }
+
+        &__board {
+            height: 221px * 3;
+            width: 221px * 3;
+        }
+        
+        &__board-content {
+            height: 200px * 3;
+            width: 200px * 3;
+        }
+
+        &__board-item-index {
+            font-size: 3em;
+        }
+    }
+
+    .menu {
+        height: 500px;
+
+        &__content {
+            width: 225px * 3;
+            row-gap: 20px;
+        }
+
+        &__title {
+            font-size: 23px;
+        }
+
+        &__resume-btn, &__restart-btn, &__sound-btn, &__save-btn, &__exit-btn {
+            padding: 15px 0px !important;
+            font-size: 23px;
+        }
+    }
+
+    .gameover {
+        height: 500px;
+
+        &__content {
+            width: 225px * 3;
+            row-gap: 20px;
+        }
+
+        &__message {
+            font-size: 23px;
+        }
+
+        &__restart-btn, &__exit-btn {
+            padding: 15px 0px !important;
+            font-size: 23px;
+        }
+    }
+}
+
+.menu_show {
+    bottom: 0 !important;
+}
+
+.blockout_show {
+    display: block !important;
+}
+
+.gameover_show {
+    bottom: 0 !important;
+}

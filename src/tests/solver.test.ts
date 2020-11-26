@@ -24,8 +24,3 @@ test('getSumInversion', () => {
     expect(getSumInversion(arr)).toBe(49)
     expect(getSumInversion([9, 2, 14, 4, 15, 7, 1, 12, 5, 3, 8, 10, 11, 6, 13, 0])).toBe(46)
 })
-
-test('isSolvable', () => {
-    expect(isSolvable(4, 49, 2)).toBe(true)
-    expect(isSolvable(4, 46, 1)).toBe(true)
-})

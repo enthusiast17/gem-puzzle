@@ -1,3 +1,5 @@
+import {isSolvable} from './solver'
+
 export const shuffle = (arr: number[]): number[] => {
     if (arr.length <= 1) return arr
     const result: number[] = arr.slice()
@@ -21,4 +23,14 @@ export const createBoard = (arr: number[]): number[][] => {
     const result: number[][] = []
     for (let row: number = 0; row < arr.length; row += size) result.push(arr.slice(row, row + size))
     return result
+}
+
+export const generateBoard = (size: number): number[][] => {
+    let row = shuffle(createRow(Math.pow(size, 2)))
+    let board = createBoard(row)
+    while (!isSolvable(board, row)) {
+        row = shuffle(createRow(Math.pow(size, 2)))
+        board = createBoard(row)
+    }
+    return board
 }

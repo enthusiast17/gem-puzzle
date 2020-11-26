@@ -1,7 +1,4 @@
-export interface Position {
-    x: number,
-    y: number
-}
+import { Position } from '../interfaces'
 
 export const getPosition = (board: number[][], value: number): Position => {
     for (let i: number = 0; i < board.length; i++) {
@@ -16,11 +13,12 @@ export const getBlankPosition = (board: number[][]): Position => getPosition(boa
 
 export const getNumberPosition = (board: number[][], value: number): Position => getPosition(board, value)
 
-export const getExpectedPosition = (length: number, target: number): Position => {
+export const getExpectedPosition = (board: number[][], length: number, target: number): Position => {
     let row: number = 1
     while (target > length * row) row += 1
+    const column = (length - 1) - Math.abs((length * row) - target)
     return {
-        x: row - 1, 
-        y: (length - 1) - Math.abs((length * row) - target)
+        x: target % length === 0 ? row: row - 1, 
+        y:  target % length === 0 ? column - 1: column
     }
 }
