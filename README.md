@@ -6,13 +6,13 @@ Gem-puzzle game. [wikipedia](https://en.wikipedia.org/wiki/15_puzzle)
 
 **Technologies:**
 - TypeScript
-- Scss (BEM)
+- SCSS (BEM)
 - Webpack 5
 - JEST
 
 **Configs:**
 - TS
-- ESLint (AirBnb)
+- ESLint (AirBnB)
 
 **Setup:**
 
